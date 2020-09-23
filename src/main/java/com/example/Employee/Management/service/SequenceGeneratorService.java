@@ -15,18 +15,18 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 @Service
 public class SequenceGeneratorService {
 
-    private MongoOperations mongoOperations;
-
-    @Autowired
-    public SequenceGeneratorService(MongoOperations mongoOperations){
-        this.mongoOperations = mongoOperations;
-    }
-
-    public long generateSequence(String sequenceName){
-
-        DatabaseSequence counter = mongoOperations.findAndModify(query(where("_id").is(sequenceName)),
-                new Update().inc("seq",1), options().returnNew(true).upsert(true),
-                DatabaseSequence.class);
-        return !Objects.isNull(counter) ? counter.getSeq() : 1;
-    }
+//    private MongoOperations mongoOperations;
+//
+//    @Autowired
+//    public SequenceGeneratorService(MongoOperations mongoOperations){
+//        this.mongoOperations = mongoOperations;
+//    }
+//
+//    public long generateSequence(String sequenceName){
+//
+//        DatabaseSequence counter = mongoOperations.findAndModify(query(where("_id").is(sequenceName)),
+//                new Update().inc("seq",1), options().returnNew(true).upsert(true),
+//                DatabaseSequence.class);
+//        return !Objects.isNull(counter) ? counter.getSeq() : 1;
+//    }
 }
